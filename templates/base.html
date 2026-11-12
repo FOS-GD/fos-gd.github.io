@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.url != "index.html" %}{{ page.title }} · {% endif %}{{ site.site_name }}</title>
+  {% if page.meta.description or site.site_description %}
+  <meta name="description" content="{{ page.meta.description or site.site_description }}">
+  {% endif %}
+  <link rel="stylesheet" href="{{ root }}static/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-name" href="{{ root }}index.html">{{ site.site_name }}</a>
+    <nav>
+      {% for item in nav %}
+      <a href="{{ root }}{{ item.url }}"{% if item.url == current %} class="active"{% endif %}>{{ item.title }}</a>
+      {% endfor %}
+    </nav>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <p>Built from Markdown · <a href="https://github.com/FOS-GD/fos-gd.github.io">Source</a></p>
+  </footer>
+</body>
+</html>

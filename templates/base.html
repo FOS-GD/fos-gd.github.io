@@ -7,24 +7,46 @@
   {% if page.meta.description or site.site_description %}
   <meta name="description" content="{{ page.meta.description or site.site_description }}">
   {% endif %}
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath fill='%23333333' d='M1 0h6v1h1v6h-1v1h-6v-1h-1v-6h1z'/%3E%3Cpath fill='%2337c8ab' d='M2 2h4v4h-4z'/%3E%3Cpath fill='%23ffffff' d='M2 2h1v1h-1z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="{{ root }}static/vendor/nes.css/nes.min.css">
   <link rel="stylesheet" href="{{ root }}static/style.css">
 </head>
 <body>
   <header class="site-header">
-    <a class="site-name" href="{{ root }}index.html">{{ site.site_name }}</a>
-    <nav>
-      {% for item in nav %}
-      <a href="{{ root }}{{ item.url }}"{% if item.url == current %} class="active"{% endif %}>{{ item.title }}</a>
-      {% endfor %}
-    </nav>
+    <div class="wrap">
+      <a class="site-name" href="{{ root }}index.html">{{ site.site_name }}<span class="cursor" aria-hidden="true"></span></a>
+      <nav>
+        {% for item in nav %}
+        <a href="{{ root }}{{ item.url }}" class="nes-btn{% if item.url == current %} is-primary" aria-current="page{% endif %}">{{ item.title }}</a>
+        {% endfor %}
+      </nav>
+    </div>
   </header>
 
-  <main>
-    {{ content }}
+  <main class="wrap">
+    <article class="window nes-container">
+      {{ content }}
+    </article>
   </main>
 
   <footer class="site-footer">
-    <p>Built from Markdown · <a href="https://github.com/FOS-GD/fos-gd.github.io">Source</a></p>
+    <div class="wrap">
+      <p>Built from Markdown · Styled with <a href="https://nostalgic-css.github.io/NES.css/">NES.css</a> · <a href="https://github.com/FOS-GD/fos-gd.github.io">Source</a></p>
+    </div>
   </footer>
+
+  <script>
+    // NES.css uses an "is-dark" class for dark variants; follow the system color scheme.
+    (function () {
+      var dark = window.matchMedia("(prefers-color-scheme: dark)");
+      function apply() {
+        document.querySelectorAll(".nes-container, .nes-table").forEach(function (el) {
+          el.classList.toggle("is-dark", dark.matches);
+        });
+      }
+      apply();
+      dark.addEventListener("change", apply);
+    })();
+  </script>
 </body>
 </html>

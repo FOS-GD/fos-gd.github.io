@@ -14,6 +14,8 @@ import functools
 import http.server
 import re
 import shutil
+import subprocess
+import sys
 import threading
 import time
 from pathlib import Path
@@ -32,6 +34,21 @@ MD_EXTENSIONS = ["extra", "toc", "sane_lists", "admonition"]
 FRONT_MATTER = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.DOTALL)
 # Rewrite links to other .md files so they point at the generated .html
 MD_LINK = re.compile(r'(href=")(?!https?://|mailto:|#)([^"#]*?)\.md([#"])')
+
+# Add NES.css (https://nostalgic-css.github.io/NES.css/) classes to plain Markdown output.
+NES_CLASSES = [
+    (re.compile(r"<table>"), '<div class="nes-table-responsive"><table class="nes-table is-bordered">'),
+    (re.compile(r"</table>"), "</table></div>"),
+    (re.compile(r"<ul>"), '<ul class="nes-list is-disc">'),
+    (re.compile(r'<div class="admonition '), '<div class="nes-container with-title admonition '),
+    (re.compile(r'<p class="admonition-title">'), '<p class="title admonition-title">'),
+]
+
+
+def add_nes_classes(html: str) -> str:
+    for pattern, replacement in NES_CLASSES:
+        html = pattern.sub(replacement, html)
+    return html
 
 
 def read_page(path: Path) -> tuple[dict, str]:
@@ -73,7 +90,7 @@ def build() -> None:
     md = markdown.Markdown(extensions=MD_EXTENSIONS)
     for page in pages:
         md.reset()
-        content = MD_LINK.sub(r"\1\2.html\3", md.convert(page["body"]))
+        content = add_nes_classes(MD_LINK.sub(r"\1\2.html\3", md.convert(page["body"])))
         depth = page["url"].count("/")
         root = "../" * depth or "./"
         html = template.render(
@@ -107,8 +124,8 @@ def snapshot() -> dict[Path, float]:
     for d in (DOCS, TEMPLATES, STATIC):
         if d.exists():
             files.update({f: f.stat().st_mtime for f in d.rglob("*") if f.is_file()})
-    cfg = ROOT / "config.yml"
-    files[cfg] = cfg.stat().st_mtime
+    for f in (ROOT / "config.yml", Path(__file__)):
+        files[f] = f.stat().st_mtime
     return files
 
 
@@ -125,10 +142,9 @@ def serve(port: int) -> None:
             now = snapshot()
             if now != last:
                 last = now
-                try:
-                    build()
-                except Exception as e:  # keep serving even if a page is broken
-                    print(f"Build failed: {e}")
+                # Rebuild in a fresh process so edits to build.py itself are picked up;
+                # a failed build is reported but keeps the server running.
+                subprocess.run([sys.executable, __file__])
     except KeyboardInterrupt:
         server.shutdown()
 

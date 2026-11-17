@@ -120,10 +120,25 @@ body {
 
 .site-header nav { display: flex; flex-wrap: wrap; gap: 4px 8px; }
 
-.site-header .nes-btn {
+.site-header .nes-btn,
+.window .nes-btn {
   font: 0.625rem/1 var(--font-pixel);
   text-transform: uppercase;
   padding: 10px 12px;
+}
+
+.window .nes-btn { font-size: 0.75rem; padding: 12px 16px; text-decoration: none; }
+
+/* The NES.css border image turns into a dotted edge on the dark header, so draw
+   the stepped corners with clip-path instead. */
+.site-header .nes-btn {
+  border-image: none;
+  border-color: transparent;
+  clip-path: polygon(
+    0 4px, 4px 4px, 4px 0, calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+    100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+    4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+  );
 }
 
 /* ---------- NES.css recolored to the site palette ---------- */
@@ -134,6 +149,20 @@ body {
 .nes-btn.is-primary:hover::after { box-shadow: inset -6px -6px var(--mint-dark); }
 .nes-btn.is-primary:active:not(.is-disabled)::after { box-shadow: inset 4px 4px var(--mint-dark); }
 .nes-btn.is-primary:focus { box-shadow: 0 0 0 6px rgba(55, 200, 171, 0.35); }
+
+/* secondary = the logo's dark gray */
+.nes-btn.is-secondary { color: var(--white); background-color: var(--gray); }
+.nes-btn.is-secondary:hover { color: var(--white); background-color: #4a4a4a; }
+.nes-btn.is-secondary::after { box-shadow: inset -4px -4px #1f1f1f; }
+.nes-btn.is-secondary:hover::after { box-shadow: inset -6px -6px #1f1f1f; }
+.nes-btn.is-secondary:active:not(.is-disabled)::after { box-shadow: inset 4px 4px #1f1f1f; }
+.nes-btn.is-secondary:focus { box-shadow: 0 0 0 6px rgba(51, 51, 51, 0.35); }
+
+.nes-progress.is-primary::-webkit-progress-value { background-color: var(--mint); }
+.nes-progress.is-primary::-moz-progress-bar { background-color: var(--mint); }
+.nes-progress.is-secondary::-webkit-progress-bar { background-color: var(--white); }
+.nes-progress.is-secondary::-webkit-progress-value { background-color: var(--gray); }
+.nes-progress.is-secondary::-moz-progress-bar { background-color: var(--gray); }
 
 .nes-container.is-dark,
 .nes-container.is-dark::after,

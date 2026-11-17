@@ -38,7 +38,7 @@ One-time setup: in the repository on GitHub, go to **Settings → Pages → Buil
 
 - Pixel art components: [NES.css](https://nostalgic-css.github.io/NES.css/) v2.3.0 by B.C.Rikko and contributors, MIT License (stored in `static/vendor/nes.css/` with its license).
   `build.py` adds the NES.css classes to the generated HTML, and `static/style.css` recolors it to the site palette.
-- Fonts: [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) by CodeMan38 and [VT323](https://fonts.google.com/specimen/VT323) by Peter Hull, both under the SIL Open Font License 1.1 (license texts in `static/fonts/`).
+- Fonts: [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) by CodeMan38 (headings, buttons), [Chakra Petch](https://fonts.google.com/specimen/Chakra+Petch) by The Chakra Petch Project Authors (body text) and [VT323](https://fonts.google.com/specimen/VT323) by Peter Hull (code), all under the SIL Open Font License 1.1 (license texts in `static/fonts/`).
   They are hosted in this repository, so visitors don't connect to Google Fonts.
 - Built with [Python-Markdown](https://github.com/Python-Markdown/markdown), [Jinja2](https://github.com/pallets/jinja) and [PyYAML](https://github.com/yaml/pyyaml).
 

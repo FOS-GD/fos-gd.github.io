@@ -15,10 +15,10 @@
 <body>
   <header class="site-header">
     <div class="wrap">
-      <a class="site-name" href="{{ root }}index.html">{{ site.site_name }}<span class="cursor" aria-hidden="true"></span></a>
+      <a class="site-name" href="{{ root }}index.html">{{ site.site_name }}</a>
       <nav>
         {% for item in nav %}
-        <a href="{{ root }}{{ item.url }}" class="nes-btn{% if item.url == current %} is-primary" aria-current="page{% endif %}">{{ item.title }}</a>
+        <a href="{{ root }}{{ item.url }}"{% if item.url == current %} aria-current="page"{% endif %}>{{ item.title }}</a>
         {% endfor %}
       </nav>
     </div>
@@ -34,7 +34,7 @@
   {% endif %}
 
   <main class="wrap">
-    <article class="window nes-container">
+    <article class="window">
       {{ content }}
     </article>
   </main>

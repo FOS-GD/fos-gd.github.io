@@ -15,4 +15,4 @@ This website is still very much under construction so please be patient as we ad
 
 In the mean-time please get to know us!
 
-<a class="nes-btn is-primary" href="about.md">Learn more about us</a>
+<div class="center"><a class="nes-btn is-primary" href="about.md">Learn more about us</a></div>

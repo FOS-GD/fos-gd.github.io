@@ -233,6 +233,23 @@ img {
   image-rendering: pixelated;
 }
 
+/* The logo is smooth artwork, not pixel art. */
+.hero-logo { image-rendering: auto; }
+
+/* ---------- hero logo ---------- */
+
+.hero {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 40px;
+}
+
+.hero-logo {
+  width: min(140px, 60vw);
+  height: auto;
+  aspect-ratio: 1;
+}
+
 /* ---------- code ---------- */
 
 code {

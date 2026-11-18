@@ -5,6 +5,9 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+  schedule:
+    # Run daily at 00:00 UTC to fetch latest awesome-fos-gamedev updates
+    - cron: '0 0 * * *'
 
 permissions:
   contents: read

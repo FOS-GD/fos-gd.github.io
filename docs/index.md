@@ -2,6 +2,9 @@
 title: Home
 ---
 
+<script data-goatcounter="https://fos-gd.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
 # Welcome to FOS-GD   <i class="nes-logo"></i>
 
 

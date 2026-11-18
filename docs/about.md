@@ -3,6 +3,9 @@ title: About
 nav_order: 10
 ---
 
+<script data-goatcounter="https://fos-gd.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
 # About
 
 The game development industry has had a tough couple of years. Studios have gotten smaller, trust in big corporations is at an all-time low, and many of us have started thinking about how things could be done better. That includes the tools we work with every day.

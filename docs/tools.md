@@ -3,6 +3,9 @@ title: Tools
 nav_order: 10
 ---
 
+<script data-goatcounter="https://fos-gd.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
 # Tools
 
 A curated list of free and open source game development tools.

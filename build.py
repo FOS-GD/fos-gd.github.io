@@ -18,6 +18,7 @@ import subprocess
 import sys
 import threading
 import time
+import urllib.request
 from pathlib import Path
 
 import markdown
@@ -49,6 +50,37 @@ def add_nes_classes(html: str) -> str:
     for pattern, replacement in NES_CLASSES:
         html = pattern.sub(replacement, html)
     return html
+
+
+def fetch_awesome_list() -> str:
+    """Fetch the awesome-fos-gamedev README and extract the tools section."""
+    try:
+        url = "https://raw.githubusercontent.com/FOS-GD/awesome-fos-gamedev/main/README.md"
+        with urllib.request.urlopen(url, timeout=5) as response:
+            content = response.read().decode("utf-8")
+        # Extract from "## Game Engines" onwards, skipping the header and badge
+        start = content.find("## Game Engines")
+        if start == -1:
+            return ""
+        content = content[start:]
+        
+        # Convert URLs to markdown links: "* Tool https://example.com" -> "* Tool [https://example.com](https://example.com)"
+        lines = content.split('\n')
+        for i, line in enumerate(lines):
+            if line.startswith("* "):
+                # Match: "* " then text, then whitespace, then URL
+                match = re.match(r'^(\*\s+)(.+?)\s+(https?://\S+?)(\s+.+)?$', line)
+                if match:
+                    prefix = match.group(1)
+                    name = match.group(2)
+                    link_url = match.group(3)
+                    suffix = match.group(4) or ""
+                    lines[i] = f"{prefix}{name} [{link_url}]({link_url}){suffix}"
+        
+        return '\n'.join(lines)
+    except Exception as e:
+        print(f"Warning: Could not fetch awesome-fos-gamedev list: {e}")
+        return ""
 
 
 def read_page(path: Path) -> tuple[dict, str]:
@@ -88,9 +120,17 @@ def build() -> None:
     )
 
     md = markdown.Markdown(extensions=MD_EXTENSIONS)
+    awesome_list = fetch_awesome_list()
+    
     for page in pages:
         md.reset()
-        content = add_nes_classes(MD_LINK.sub(r"\1\2.html\3", md.convert(page["body"])))
+        body = page["body"]
+        
+        # Replace {{awesome-fos-gamedev}} with the fetched content
+        if "{{awesome-fos-gamedev}}" in body:
+            body = body.replace("{{awesome-fos-gamedev}}", awesome_list)
+        
+        content = add_nes_classes(MD_LINK.sub(r"\1\2.html\3", md.convert(body)))
         depth = page["url"].count("/")
         root = "../" * depth or "./"
         html = template.render(

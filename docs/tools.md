@@ -5,8 +5,9 @@ nav_order: 10
 
 # Tools
 
+A curated list of free and open source game development tools.
 
-We will soon add resources here!
+> **Want to contribute?** This list is maintained in the [awesome-fos-gamedev](https://github.com/FOS-GD/awesome-fos-gamedev) repository. [Edit the README](https://github.com/FOS-GD/awesome-fos-gamedev/edit/main/README.md) to add or update tools!
 
-<progress class="nes-progress is-secondary" value="20" max="100"></progress>
+{{awesome-fos-gamedev}}
 

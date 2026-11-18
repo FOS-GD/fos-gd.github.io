@@ -40,6 +40,7 @@ One-time setup: in the repository on GitHub, go to **Settings → Pages → Buil
   `build.py` adds the NES.css classes to the generated HTML, and `static/style.css` recolors it to the site palette.
 - Fonts: [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) by CodeMan38 (headings, buttons), [Chakra Petch](https://fonts.google.com/specimen/Chakra+Petch) by The Chakra Petch Project Authors (body text) and [VT323](https://fonts.google.com/specimen/VT323) by Peter Hull (code), all under the SIL Open Font License 1.1 (license texts in `static/fonts/`).
   They are hosted in this repository, so visitors don't connect to Google Fonts.
+- Analytics: [Goat Counter](https://www.goatcounter.com/), a privacy-friendly web analytics platform.
 - Built with [Python-Markdown](https://github.com/Python-Markdown/markdown), [Jinja2](https://github.com/pallets/jinja) and [PyYAML](https://github.com/yaml/pyyaml).
 
 ## AI assistance

@@ -13,3 +13,7 @@ The game development industry has had a tough couple of years. Studios have gott
 Open source has been part of software development since the 1960s, and it’s no longer seen as a tool for renegades but as a way for people and organizations to build together. Projects maintained by their communities share the risk, keep both their code and their governance transparent, and give everyone who uses or contributes to them a real say in where they go next. So it comes as no surprise that open source tooling is taking hold among the next generation of game developers: Godot for engines, Blender for 3D and animation, Krita for art, and hundreds of other tools, backed by thousands of plugins built by their communities.
 
 We want to bring these developers together and build a community for open source game development: a space to discuss the tools we use, host meetups, organize game jams, exchange ideas (and stickers), and build a presence for game development at open source conferences.
+
+
+<div class="center"><a class="nes-btn is-primary" href="#">Join us on Discord</a></div>
+<div class="center"><a class="nes-btn is-secondary" href="#">Follow us on Fosstadon</a></div>

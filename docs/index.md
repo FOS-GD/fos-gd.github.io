@@ -8,7 +8,9 @@ title: Home
 # Welcome to FOS-GD   <i class="nes-logo"></i>
 
 
-This website is still very much under construction so please be patient as we add more information.
+We are a group of Game Developers and we love Open Source! Currently we have just started up this community in the vibrant city of Malmö, south of Sweden. 
+
+This website is still very much under construction so please stay tuned as we add more tools and information.
 
 <progress class="nes-progress is-secondary" value="20" max="100"></progress>
 
